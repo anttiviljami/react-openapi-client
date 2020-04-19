@@ -1,4 +1,6 @@
-# Create-React-App Example using `react-openapi-client`
+# react-openapi-client-cra-example
+
+Create-React-App Example using `react-openapi-client`
 
 ## How to run:
 

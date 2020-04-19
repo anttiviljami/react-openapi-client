@@ -1,5 +1,5 @@
 {
-  "name": "cra-example",
+  "name": "react-openapi-client-cra-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
