@@ -10,7 +10,7 @@
 
 Consume OpenAPI-enabled APIs with React Hooks
 
-Uses [`react-openapi-client`](https://www.npmjs.com/package/react-openapi-client) under the hood.
+Uses [`openapi-client-axios`](https://www.npmjs.com/package/openapi-client-axios) under the hood.
 
 ## Why?
 
