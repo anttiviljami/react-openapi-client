@@ -85,13 +85,12 @@ const App = () => (
 Now you can start using the `useOperation` and `useOperationMethod` hooks in your components.
 
 ```jsx
-import { useOperation, useOperationMethod } from 'react-openapi-client';
+import { useOperation } from 'react-openapi-client';
 
 const PetDetails = (props) => {
   const { loading, error, data } = useOperation('getPetById');
-  const [deletePet, { loading: deleteLoading, error: deleteError, response: deleteResponse }] = useOperationMethod('deletePet');
 
-  if (loading || !data) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -112,11 +111,90 @@ const PetDetails = (props) => {
         </li>
       </ul>
       <button onClick={() => deletePetById(data.id)}>
-      {deleteResponse && <p>Success!</p>}
-      {deleteError && <p>Error deleting pet: {deleteError}</p>
     </div>
   );
 };
+```
+
+## useOperation hook
+
+The `useOperation` hook is a great way to declarative fetch data from a RESTful API.
+
+Important! Calling `useOperation()` always immediately calls the API endpoint.
+
+Parameters:
+
+`useOperation` passes the arguments to an OpenAPI Client Axios [`Operation Method`](https://github.com/anttiviljami/openapi-client-axios#operation-methods)
+matching the operationId.
+
+- [**operationId**](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#fixed-fields-8) (string) the operationId of
+- [**parameters**](https://github.com/anttiviljami/openapi-client-axios#parameters) (object | string | number) Optional. Parameters for the operation
+- [**data**](https://github.com/anttiviljami/openapi-client-axios#data) (object | string | Buffer) Optional. Request payload for the operation
+- [**config**](https://github.com/anttiviljami/openapi-client-axios#config-object) (AxiosRequestConfig) Optional. Request payload for the operation
+
+Return value:
+
+`useOperation` returns an object containing the following state properties:
+
+- **loading** (boolean) whether the API request is currently ongoing.
+- **data** (any) the parsed response data for the operation.
+- **response** (any) the raw axios response object for the operation.
+- **error** (Error) contains an error object, in case the request fails
+- **api** (OpenAPIClientAxios) reference to the API client class instance
+
+Example usage:
+
+```javascript
+const { data, loading } = useOperation('getPetById', 1, null, { headers: { 'x-api-key': 'secret' } });
+```
+
+## useOperationMethod hook
+
+The `useOperationMethod` hook can be used to obtain a callable operation method.
+
+Unlike `useOperation`, calling `useOperationMethod()` has no side effects.
+
+Parameters:
+
+`useOperationMethod` gets the corresponding OpenAPI Client Axios [`Operation Method`](https://github.com/anttiviljami/openapi-client-axios#operation-methods)
+matching the operationId.
+
+- [**operationId**](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#fixed-fields-8) (string) the operationId of
+
+Return value:
+
+`useOperationMethod` returns a tuple (javascript array), where the first
+element is the callable operation method, and the second method contains the
+same object as `useOperation`'s return value.
+
+See [OpenAPI Client Axios documentation](https://github.com/anttiviljami/openapi-client-axios/blob/master/DOCS.md#operation-method)
+for more details on how to use the Operation Methods.
+
+Example usage:
+
+```javascript
+const [createPet, { loading, response, error }] = useOperationMethod('createPet');
+```
+
+## OpenAPIProvider
+
+The `OpenAPIProvider` component provides context to all nested components in the
+React DOM so they can use the `useOperation` and `useOperationMethod` hooks.
+
+Internally, the Provider instantiates an instance of OpenAPIClientAxios, which
+is then used by the hooks to call the API operations.
+
+In addition to the definition file, you can pass any [constructor options](https://github.com/anttiviljami/openapi-client-axios/blob/master/DOCS.md#class-openapiclientaxios)
+accepted by OpenAPIClientAxios as props to the `OpenAPIProvider` component.
+
+Example usage:
+
+```jsx
+const App = () => (
+  <OpenAPIProvider definition="http://petstore.swagger.io:8080/api/v3/openapi.json" axiosConfigDefaults={{ withCredentials: true }}>
+    <ApplicationLayout>
+  </OpenAPIProvider>
+)
 ```
 
 ## Contributing
@@ -124,3 +202,4 @@ const PetDetails = (props) => {
 React OpenAPI Client is Free and Open Source Software. Issues and pull requests are more than welcome!
 
 [<img alt="The Chilicorn" src="http://spiceprogram.org/assets/img/chilicorn_sticker.svg" width="250" height="250">](https://spiceprogram.org/oss-sponsorship)
+
