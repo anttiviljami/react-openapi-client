@@ -193,7 +193,7 @@ Example usage:
 ```jsx
 const App = () => (
   <OpenAPIProvider definition="http://petstore.swagger.io:8080/api/v3/openapi.json" axiosConfigDefaults={{ withCredentials: true }}>
-    <ApplicationLayout>
+    <ApplicationLayout />
   </OpenAPIProvider>
 )
 ```
