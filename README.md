@@ -54,7 +54,7 @@ You can do this:
 import React, { useEffect } from 'react';
 import { useOperation } from 'react-openapi-client';
 
-const PetDetails = (props) => {
+const MyComponent = (props) => {
   const [getPetById, { loading, error, data }] = useOperation('getPetById');
 
   useEffect(() => {
