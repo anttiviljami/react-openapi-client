@@ -119,7 +119,7 @@ See a full Create-React-App example under [`examples/`](https://github.com/antti
 
 ## useOperation hook
 
-The `useOperation` hook is a great way to declarative fetch data from a RESTful API.
+The `useOperation` hook is a great way to declaratively fetch data from your API.
 
 Important! Calling `useOperation()` always immediately calls the API endpoint.
 
