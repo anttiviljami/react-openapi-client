@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from 'react';
+import React, { createContext, ReactNode, useMemo } from 'react';
 import OpenAPIClientAxios, { Document } from 'openapi-client-axios';
 
 export const OpenAPIContext: React.Context<{
@@ -11,7 +11,6 @@ interface Props {
 }
 
 export const OpenAPIProvider = ({ children, ...clientOpts }: Props) => {
-  const api = new OpenAPIClientAxios({ ...clientOpts });
-  api.init();
+  const api = useMemo(() => new OpenAPIClientAxios({ ...clientOpts }), []);
   return <OpenAPIContext.Provider value={{ api }}>{children}</OpenAPIContext.Provider>;
 };

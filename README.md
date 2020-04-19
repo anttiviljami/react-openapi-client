@@ -4,6 +4,8 @@
 
 Consume OpenAPI-enabled APIs with React Hooks
 
+Uses [`openapi-client-axios`](https://www.npmjs.com/package/openapi-client-axios) under the hood.
+
 ## Getting Started
 
 Install `react-openapi-client` as a dependency
@@ -24,24 +26,19 @@ const App = () => (
     <PetDetails id={1} />
   </OpenAPIProvider>
 );
-
-render(<App />, document.getElementById('root'));
 ```
 
 Now you can start using the `useOperation` hook in your components.
 
 ```jsx
-import React, { useEffect } from 'react';
-import { useOperation } from 'react-openapi-client';
-
-export const PetDetails = (props) => {
+const PetDetails = (props) => {
   const [getPetById, { loading, error, data }] = useOperation('getPetById');
 
   useEffect(() => {
     getPetById(props.id);
-  }, [props.id]);
+  }, [getPetById, props.id]);
 
-  if (loading) {
+  if (loading || !data) {
     return <div>Loading...</div>;
   }
 
@@ -50,12 +47,16 @@ export const PetDetails = (props) => {
   }
 
   return (
-    <div>
-      <img src={data.photo} alt={data.name} />
+    <div className="App">
+      <img src={data.image} alt={data.name} />
       <h3>{data.name}</h3>
       <ul>
-        <li><strong>id:</strong> {data.id}</li>
-        <li><strong>status:</strong> {data.status}</li>
+        <li>
+          <strong>id:</strong> {data.id}
+        </li>
+        <li>
+          <strong>status:</strong> {data.status}
+        </li>
       </ul>
     </div>
   );
@@ -67,4 +68,3 @@ export const PetDetails = (props) => {
 React OpenAPI Client is Free and Open Source Software. Issues and pull requests are more than welcome!
 
 [<img alt="The Chilicorn" src="http://spiceprogram.org/assets/img/chilicorn_sticker.svg" width="250" height="250">](https://spiceprogram.org/oss-sponsorship)
-

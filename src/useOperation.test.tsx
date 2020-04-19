@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { useOperation, OpenAPIProvider, OpenAPIContext } from '.';
 import { renderHook, act } from '@testing-library/react-hooks';
-import OpenAPIClientAxios, { OpenAPIClient } from 'openapi-client-axios';
+import OpenAPIClientAxios from 'openapi-client-axios';
 
 const definition = JSON.parse(
   fs.readFileSync(path.join(__dirname, '..', '__tests__', 'resources', 'openapi.json')).toString(),
@@ -14,7 +14,7 @@ describe('useOperation', () => {
     <OpenAPIProvider definition={definition}>{children}</OpenAPIProvider>
   );
 
-  it('should call getPets', async () => {
+  it('should call getPets operation method', async () => {
     // given
     let api: OpenAPIClientAxios;
     const { result } = renderHook(
