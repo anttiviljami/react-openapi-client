@@ -20,9 +20,9 @@ Instead of:
 import React, { useEffect, useState } from 'react';
 
 const MyComponent = (props) => {
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -55,7 +55,7 @@ import React, { useEffect } from 'react';
 import { useOperation } from 'react-openapi-client';
 
 const MyComponent = (props) => {
-  const { data, error, loading } = useOperation('getPetById', props.id);
+  const { loading, data, error } = useOperation('getPetById', props.id);
   // ...
 };
 ```
@@ -88,7 +88,7 @@ Now you can start using the `useOperation` and `useOperationMethod` hooks in you
 import { useOperation } from 'react-openapi-client';
 
 const PetDetails = (props) => {
-  const { loading, error, data } = useOperation('getPetById');
+  const { loading, data, error } = useOperation('getPetById', props.id);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -126,9 +126,9 @@ Important! Calling `useOperation()` always immediately calls the API endpoint.
 Parameters:
 
 `useOperation` passes the arguments to an OpenAPI Client Axios [`Operation Method`](https://github.com/anttiviljami/openapi-client-axios#operation-methods)
-matching the operationId.
+matching the operationId given as the first parameter.
 
-- [**operationId**](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#fixed-fields-8) (string) the operationId of
+- [**operationId**](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#fixed-fields-8) (string) Required. the operationId of the operation to call
 - [**parameters**](https://github.com/anttiviljami/openapi-client-axios#parameters) (object | string | number) Optional. Parameters for the operation
 - [**data**](https://github.com/anttiviljami/openapi-client-axios#data) (object | string | Buffer) Optional. Request payload for the operation
 - [**config**](https://github.com/anttiviljami/openapi-client-axios#config-object) (AxiosRequestConfig) Optional. Request payload for the operation
@@ -146,7 +146,7 @@ Return value:
 Example usage:
 
 ```javascript
-const { data, loading } = useOperation('getPetById', 1, null, { headers: { 'x-api-key': 'secret' } });
+const { loading, data, error } = useOperation('getPetById', 1, null, { headers: { 'x-api-key': 'secret' } });
 ```
 
 ## useOperationMethod hook
@@ -160,7 +160,7 @@ Parameters:
 `useOperationMethod` gets the corresponding OpenAPI Client Axios [`Operation Method`](https://github.com/anttiviljami/openapi-client-axios#operation-methods)
 matching the operationId.
 
-- [**operationId**](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#fixed-fields-8) (string) the operationId of
+- [**operationId**](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#fixed-fields-8) (string) Required. the operationId of the operation to call
 
 Return value:
 
@@ -203,4 +203,3 @@ const App = () => (
 React OpenAPI Client is Free and Open Source Software. Issues and pull requests are more than welcome!
 
 [<img alt="The Chilicorn" src="http://spiceprogram.org/assets/img/chilicorn_sticker.svg" width="250" height="250">](https://spiceprogram.org/oss-sponsorship)
-
