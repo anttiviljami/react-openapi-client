@@ -16,7 +16,7 @@ describe('useOperation', () => {
   it('should call the api operation method', async () => {
     // given
     const { result, waitForValueToChange } = renderHook(() => useOperation('getPets'), { wrapper });
-    const mock = jest.spyOn(result.current.api.client, 'getPets').mockImplementationOnce(() => null);
+    const mock = jest.spyOn(result.current.api.client, 'getPets').mockImplementationOnce(async () => null);
 
     // when
     await act(() => waitForValueToChange(() => result.current.loading));
@@ -28,7 +28,7 @@ describe('useOperation', () => {
   it('should set loading initially to true', async () => {
     // given
     const { result, waitForValueToChange } = renderHook(() => useOperation('getPets'), { wrapper });
-    jest.spyOn(result.current.api.client, 'getPets').mockImplementationOnce(() => null);
+    jest.spyOn(result.current.api.client, 'getPets').mockImplementationOnce(async () => null);
 
     // when
     expect(result.current.loading).toBe(true);

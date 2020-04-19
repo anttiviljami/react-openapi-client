@@ -10,7 +10,7 @@ export function useOperation(
 ): { loading: boolean; error?: Error; data?: any; response: AxiosResponse; api: OpenAPIClientAxios } {
   const { api } = useContext(OpenAPIContext);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<AxiosError>(undefined);
   const [data, setData] = useState<any>(undefined);
   const [response, setResponse] = useState<AxiosResponse>(undefined);
