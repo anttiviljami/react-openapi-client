@@ -110,11 +110,12 @@ const PetDetails = (props) => {
           <strong>status:</strong> {data.status}
         </li>
       </ul>
-      <button onClick={() => deletePetById(data.id)}>
     </div>
   );
 };
 ```
+
+See a full Create-React-App example under [`examples/`](https://github.com/anttiviljami/react-openapi-client/tree/master/examples/)
 
 ## useOperation hook
 
