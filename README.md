@@ -35,7 +35,7 @@ const MyComponent = (props) => {
           },
           credentials: 'include',
         });
-        const data = res.json();
+        const data = await res.json();
         setData(data);
       } catch (err) {
         setError(err);
@@ -73,7 +73,7 @@ Install `react-openapi-client` as a dependency
 npm install --save react-openapi-client
 ```
 
-Wrap your React App with an `OpenAPIProvider`, passing your OpenAPI definition.
+Wrap your React App with an `OpenAPIProvider`, passing your OpenAPI definition as a prop.
 
 ```jsx
 import React from 'react';
