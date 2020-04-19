@@ -6,6 +6,59 @@ Consume OpenAPI-enabled APIs with React Hooks
 
 Uses [`openapi-client-axios`](https://www.npmjs.com/package/openapi-client-axios) under the hood.
 
+## Why?
+
+Instead of:
+
+```jsx
+import React, { useEffect, useState } from 'react';
+
+const MyComponent = (props) => {
+  const [data, setData] = useState();
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`https://petstore.swagger.io/api/v3/pet/${props.id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+        const data = res.json();
+        setData(data);
+      } catch (err) {
+        setError(err);
+      }
+      setLoading(false);
+    })();
+  }, [props.id]);
+
+  // ...
+};
+```
+
+You can do this:
+
+```jsx
+import React, { useEffect } from 'react';
+import { useOperation } from 'react-openapi-client';
+
+const PetDetails = (props) => {
+  const [getPetById, { loading, error, data }] = useOperation('getPetById');
+
+  useEffect(() => {
+    getPetById(props.id);
+  }, [getPetById, props.id]);
+
+  // ...
+};
+```
+
 ## Getting Started
 
 Install `react-openapi-client` as a dependency
