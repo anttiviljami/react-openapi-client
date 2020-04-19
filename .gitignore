@@ -9,6 +9,9 @@
 # include jest config
 !jest.config.js
 
+# include example
+!examples/*/src/**/*.js
+
 # npm
 node_modules
 npm_debug.log*
