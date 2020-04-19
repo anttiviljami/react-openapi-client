@@ -21,9 +21,9 @@ import { OpenAPIProvider } from 'react-openapi-client';
 
 const App = () => (
   <OpenAPIProvider definition="http://petstore.swagger.io:8080/api/v3/openapi.json">
-    { // rest of your app goes here }
+    <PetDetails id={1} />
   </OpenAPIProvider>
-)
+);
 
 render(<App />, document.getElementById('root'));
 ```
@@ -51,11 +51,11 @@ export const PetDetails = (props) => {
 
   return (
     <div>
-      <img src={pet.photo} alt={pet.name} />
-      <h3>{pet.name}</h3>
+      <img src={data.photo} alt={data.name} />
+      <h3>{data.name}</h3>
       <ul>
-        <li><strong>id:</strong> {pet.id}</li>
-        <li><strong>status:</strong> {pet.status}</li>
+        <li><strong>id:</strong> {data.id}</li>
+        <li><strong>status:</strong> {data.status}</li>
       </ul>
     </div>
   );
