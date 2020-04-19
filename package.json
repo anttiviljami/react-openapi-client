@@ -1,0 +1,66 @@
+{
+  "name": "react-openapi-client",
+  "description": "Consume OpenAPI-enabled APIs with React Hooks",
+  "version": "0.0.1",
+  "author": "Viljami Kuosmanen <viljami@viljami.io>",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "useOperation",
+    "openapi",
+    "swagger",
+    "client",
+    "axios",
+    "frontend",
+    "browser",
+    "typescript"
+  ],
+  "homepage": "https://github.com/anttiviljami/react-openapi-client",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anttiviljami/react-openapi-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anttiviljami/react-openapi-client/issues"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "**/*.js",
+    "**/*.d.ts",
+    "!*.test.*",
+    "!**/*.test.*",
+    "!node_modules",
+    "!src",
+    "!*.config.js"
+  ],
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "dependencies": {
+    "openapi-client-axios": "^3.4.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^10.0.2",
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.8",
+    "@types/react": "^16.9.30",
+    "@types/react-dom": "^16.9.5",
+    "jest": "^25.2.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "ts-jest": "^25.3.0",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch-build": "tsc -w",
+    "prettier": "prettier --write src/** __tests__/**",
+    "prepare": "npm run build",
+    "test": "NODE_ENV=test jest"
+  }
+}
