@@ -7,24 +7,10 @@
   "paths": {
     "/pets": {
       "get": {
-        "operationId": "getPets",
+        "operationId": "listPets",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ListPetsRes"
-          }
-        }
-      },
-      "post": {
-        "operationId": "createPet",
-        "requestBody": {
-          "description": "Pet object to create",
-          "content": {
-            "application/json": {}
-          }
-        },
-        "responses": {
-          "201": {
-            "$ref": "#/components/responses/PetRes"
           }
         }
       }
@@ -35,6 +21,24 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/PetRes"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "deletePetById",
+        "responses": {
+          "204": {
+            "description": "deleted successfully"
           }
         },
         "parameters": [

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useOperation, OpenAPIProvider } from 'react-openapi-client';
+import React from 'react';
+import { useOperation, useOperationMethod, OpenAPIProvider } from 'react-openapi-client';
 
 const App = () => (
   <OpenAPIProvider definition="http://localhost:5001/openapi.json">
@@ -8,11 +8,11 @@ const App = () => (
 );
 
 const PetDetails = (props) => {
-  const [getPetById, { loading, error, data }] = useOperation('getPetById');
+  // useOperation is called right away as an effect
+  const { loading, error, data } = useOperation('getPetById', props.id);
 
-  useEffect(() => {
-    getPetById(props.id);
-  }, [getPetById, props.id]);
+  // useOperationMethod returns a method you can call
+  const [deletePetById, deleteState] = useOperationMethod('deletePetById');
 
   if (loading || !data) {
     return <div>Loading...</div>;
@@ -34,6 +34,11 @@ const PetDetails = (props) => {
           <strong>status:</strong> {data.status}
         </li>
       </ul>
+      <button onClick={() => deletePetById(data.id)} disabled={deleteState.loading}>
+        Delete
+      </button>
+      {deleteState.response && <p>Success!</p>}
+      {deleteState.error && <p>Error deleting pet: {deleteState.error}</p>}
     </div>
   );
 };

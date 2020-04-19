@@ -1,13 +1,13 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useCallback } from 'react';
 import { OpenAPIContext } from './OpenAPIProvider';
-import { AxiosResponse, OpenAPIClientAxios, UnknownOperationMethod, AxiosError } from 'openapi-client-axios';
+import { UnknownOperationMethod, OpenAPIClientAxios, AxiosResponse, AxiosError } from 'openapi-client-axios';
 
-type OperationParameters = Parameters<UnknownOperationMethod>;
-
-export function useOperation(
+export function useOperationMethod(
   operationId: string,
-  ...params: OperationParameters
-): { loading: boolean; error?: Error; data?: any; response: AxiosResponse; api: OpenAPIClientAxios } {
+): [
+  UnknownOperationMethod,
+  { loading: boolean; error?: Error; data?: any; response: AxiosResponse; api: OpenAPIClientAxios },
+] {
   const { api } = useContext(OpenAPIContext);
 
   const [loading, setLoading] = useState(false);
@@ -15,8 +15,9 @@ export function useOperation(
   const [data, setData] = useState<any>(undefined);
   const [response, setResponse] = useState<AxiosResponse>(undefined);
 
-  useEffect(() => {
-    (async () => {
+  const operationMethod: UnknownOperationMethod = useCallback(
+    async (...params) => {
+      setLoading(true);
       const client = await api.getClient();
       let res: AxiosResponse;
       try {
@@ -27,8 +28,10 @@ export function useOperation(
         setError(err);
       }
       setLoading(false);
-    })();
-  }, []);
+      return res;
+    },
+    [setLoading, setData, setError],
+  );
 
-  return { loading, error, data, response, api };
+  return [operationMethod, { loading, error, data, response, api }];
 }

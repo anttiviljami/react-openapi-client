@@ -55,12 +55,7 @@ import React, { useEffect } from 'react';
 import { useOperation } from 'react-openapi-client';
 
 const MyComponent = (props) => {
-  const [getPetById, { loading, error, data }] = useOperation('getPetById');
-
-  useEffect(() => {
-    getPetById(props.id);
-  }, [getPetById, props.id]);
-
+  const { data, error, loading } = useOperation('getPetById', props.id);
   // ...
 };
 ```
@@ -87,15 +82,14 @@ const App = () => (
 );
 ```
 
-Now you can start using the `useOperation` hook in your components.
+Now you can start using the `useOperation` and `useOperationMethod` hooks in your components.
 
 ```jsx
-const PetDetails = (props) => {
-  const [getPetById, { loading, error, data }] = useOperation('getPetById');
+import { useOperation, useOperationMethod } from 'react-openapi-client';
 
-  useEffect(() => {
-    getPetById(props.id);
-  }, [getPetById, props.id]);
+const PetDetails = (props) => {
+  const { loading, error, data } = useOperation('getPetById');
+  const [deletePet, { loading: deleteLoading, error: deleteError, response: deleteResponse }] = useOperationMethod('deletePet');
 
   if (loading || !data) {
     return <div>Loading...</div>;
@@ -117,6 +111,9 @@ const PetDetails = (props) => {
           <strong>status:</strong> {data.status}
         </li>
       </ul>
+      <button onClick={() => deletePetById(data.id)}>
+      {deleteResponse && <p>Success!</p>}
+      {deleteError && <p>Error deleting pet: {deleteError}</p>
     </div>
   );
 };

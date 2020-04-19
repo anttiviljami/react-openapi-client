@@ -41,7 +41,8 @@
     "react-dom": "^16.13.1"
   },
   "dependencies": {
-    "openapi-client-axios": "^3.4.1"
+    "openapi-client-axios": "^3.4.1",
+    "urs": "0.0.5"
   },
   "devDependencies": {
     "@testing-library/react": "^10.0.2",
