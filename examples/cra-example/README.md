@@ -1,3 +1,12 @@
+# Create-React-App Example using `react-openapi-client`
+
+## How to run:
+
+```
+npm run mock &
+npm start
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
