@@ -12,6 +12,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
+    "dev": "concurrently npm:start npm:mock",
     "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "mock": "openapi mock openapi.json -p 5001",
     "link": "rm -fr ../../node_modules/react && npm link ../../ && npm link ../../node_modules/react"
@@ -32,6 +33,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^5.1.0",
     "openapicmd": "^1.6.2"
   }
 }
