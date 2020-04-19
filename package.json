@@ -50,9 +50,11 @@
     "@types/node": "^13.9.8",
     "@types/react": "^16.9.30",
     "@types/react-dom": "^16.9.5",
+    "isomorphic-fetch": "^2.2.1",
     "jest": "^25.2.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
     "ts-jest": "^25.3.0",
     "typescript": "^3.8.3"
   },

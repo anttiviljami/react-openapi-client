@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { OpenAPIContext } from './OpenAPIProvider';
 import { UnknownOperationMethod, AxiosResponse } from 'openapi-client-axios';
 
-export const useOperation = (operationId: string) => {
+export function useOperation(
+  operationId: string,
+): [UnknownOperationMethod, { loading: boolean; error?: Error; data?: any }] {
   const { api } = useContext(OpenAPIContext);
-  const client = api.client;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
@@ -12,6 +13,7 @@ export const useOperation = (operationId: string) => {
 
   const operationMethod: UnknownOperationMethod = async (...params) => {
     setLoading(true);
+    const client = await api.getClient();
     let res: AxiosResponse;
     try {
       res = await client[operationId](...params);
@@ -23,4 +25,4 @@ export const useOperation = (operationId: string) => {
   };
 
   return [operationMethod, { loading, error, data }];
-};
+}

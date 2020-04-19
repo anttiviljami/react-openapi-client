@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, ReactNode } from 'react';
 import OpenAPIClientAxios, { Document } from 'openapi-client-axios';
 
 export const OpenAPIContext: React.Context<{
@@ -7,7 +7,7 @@ export const OpenAPIContext: React.Context<{
 
 interface Props {
   definition: string | Document;
-  children?: JSX.Element | JSX.Element[] | string;
+  children?: ReactNode;
 }
 
 export const OpenAPIProvider = ({ children, ...clientOpts }: Props) => {
