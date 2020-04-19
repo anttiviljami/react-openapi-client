@@ -19,10 +19,10 @@ export function useOperation(
       try {
         res = await client[operationId](...params);
         setData(res.data);
-        setLoading(false);
       } catch (err) {
         setError(err);
       }
+      setLoading(false);
       return res;
     },
     [operationId],
