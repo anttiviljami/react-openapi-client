@@ -179,7 +179,7 @@ const [createPet, { loading, response, error }] = useOperationMethod('createPet'
 
 ## OpenAPIProvider
 
-The `OpenAPIProvider` component provides context to all nested components in the
+The `OpenAPIProvider` component provides `OpenAPIContext` to all nested components in the
 React DOM so they can use the `useOperation` and `useOperationMethod` hooks.
 
 Internally, the Provider instantiates an instance of OpenAPIClientAxios, which
@@ -196,6 +196,20 @@ const App = () => (
     <ApplicationLayout />
   </OpenAPIProvider>
 )
+```
+
+You can also access the `OpenAPIClientAxios` instance by using the React `useContext` hook:
+
+```jsx
+import React, { useContext } from 'react';
+import { OpenAPIContext } from 'react-openapi-client';
+
+const MyComponent = () => {
+  const { api } = useContext(OpenAPIContext);
+  const client = api.client;
+  const definition = api.definition;
+  // ...
+}
 ```
 
 ## Contributing

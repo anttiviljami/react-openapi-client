@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useMemo } from 'react';
-import OpenAPIClientAxios, { Document } from 'openapi-client-axios';
+import OpenAPIClientAxios from 'openapi-client-axios';
 
 export const OpenAPIContext: React.Context<{
   api: OpenAPIClientAxios;
