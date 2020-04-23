@@ -8,7 +8,6 @@ export const OpenAPIContext: React.Context<{
 type OpenAPIClientAxiosOpts = ConstructorParameters<typeof OpenAPIClientAxios>[0];
 
 interface Props extends OpenAPIClientAxiosOpts {
-  definition: string | Document;
   children?: ReactNode;
 }
 

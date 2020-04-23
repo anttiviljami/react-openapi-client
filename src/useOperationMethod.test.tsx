@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import { useOperationMethod, OpenAPIProvider } from '.';
 import { renderHook, act } from '@testing-library/react-hooks';
-import { AxiosResponse } from 'openapi-client-axios';
 
 const definition = JSON.parse(
   fs.readFileSync(path.join(__dirname, '..', '__tests__', 'resources', 'openapi.json')).toString(),
