@@ -2,12 +2,15 @@ import { useContext, useState, useEffect } from 'react';
 import { OpenAPIContext } from './OpenAPIProvider';
 import { AxiosResponse, OpenAPIClientAxios, UnknownOperationMethod, AxiosError } from 'openapi-client-axios';
 
-type OperationParameters = Parameters<UnknownOperationMethod>;
+export type ResponseObject<ResponseType = any> = {
+  loading: boolean;
+  error?: Error;
+  data?: ResponseType;
+  response: AxiosResponse<ResponseType>;
+  api: OpenAPIClientAxios;
+};
 
-export function useOperation(
-  operationId: string,
-  ...params: OperationParameters
-): { loading: boolean; error?: Error; data?: any; response: AxiosResponse; api: OpenAPIClientAxios } {
+export function useOperation(operationId: string, ...params: Parameters<UnknownOperationMethod>): ResponseObject {
   const { api } = useContext(OpenAPIContext);
 
   const [loading, setLoading] = useState(true);

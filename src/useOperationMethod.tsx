@@ -1,13 +1,9 @@
 import { useContext, useState, useCallback } from 'react';
 import { OpenAPIContext } from './OpenAPIProvider';
-import { UnknownOperationMethod, OpenAPIClientAxios, AxiosResponse, AxiosError } from 'openapi-client-axios';
+import { UnknownOperationMethod, AxiosResponse, AxiosError } from 'openapi-client-axios';
+import { ResponseObject } from './useOperation';
 
-export function useOperationMethod(
-  operationId: string,
-): [
-  UnknownOperationMethod,
-  { loading: boolean; error?: Error; data?: any; response: AxiosResponse; api: OpenAPIClientAxios },
-] {
+export function useOperationMethod(operationId: string): [UnknownOperationMethod, ResponseObject] {
   const { api } = useContext(OpenAPIContext);
 
   const [loading, setLoading] = useState(false);
