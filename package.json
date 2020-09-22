@@ -1,7 +1,7 @@
 {
   "name": "react-openapi-client",
   "description": "Consume OpenAPI-enabled APIs with React Hooks",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "Viljami Kuosmanen <viljami@viljami.io>",
   "license": "MIT",
   "keywords": [
@@ -41,7 +41,7 @@
     "react-dom": "^16.13.1"
   },
   "dependencies": {
-    "openapi-client-axios": "^3.4.1",
+    "openapi-client-axios": "^3.7.0",
     "urs": "0.0.5"
   },
   "devDependencies": {
