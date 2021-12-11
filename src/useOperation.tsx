@@ -24,7 +24,7 @@ export function useOperation(
         setResponse(res);
         setData(res.data);
       } catch (err) {
-        setError(err);
+        setError(err as AxiosError);
       }
       setLoading(false);
     })();

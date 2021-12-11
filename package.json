@@ -41,8 +41,7 @@
     "react-dom": "^16.13.1"
   },
   "dependencies": {
-    "openapi-client-axios": "^3.7.0",
-    "urs": "0.0.5"
+    "openapi-client-axios": "^4.4.9"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.5.0",
@@ -52,13 +51,14 @@
     "@types/node": "^13.9.8",
     "@types/react": "^16.9.30",
     "@types/react-dom": "^16.9.5",
+    "axios": "^0.24.0",
     "isomorphic-fetch": "^2.2.1",
     "jest": "^25.2.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "ts-jest": "^25.3.0",
-    "typescript": "^3.8.3"
+    "typescript": "^4.5.3"
   },
   "scripts": {
     "build": "tsc",

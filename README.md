@@ -14,6 +14,18 @@ Uses [`openapi-client-axios`](https://www.npmjs.com/package/openapi-client-axios
 
 ## Why?
 
+You can do this:
+
+```jsx
+import React, { useEffect } from 'react';
+import { useOperation } from 'react-openapi-client';
+
+const MyComponent = (props) => {
+  const { loading, data, error } = useOperation('getPetById', props.id);
+  // ...
+};
+```
+
 Instead of:
 
 ```jsx
@@ -48,24 +60,12 @@ const MyComponent = (props) => {
 };
 ```
 
-You can do this:
-
-```jsx
-import React, { useEffect } from 'react';
-import { useOperation } from 'react-openapi-client';
-
-const MyComponent = (props) => {
-  const { loading, data, error } = useOperation('getPetById', props.id);
-  // ...
-};
-```
-
 ## Getting Started
 
 Install `react-openapi-client` as a dependency
 
 ```
-npm install --save react-openapi-client
+npm install --save react-openapi-client axios
 ```
 
 Wrap your React App with an `OpenAPIProvider`, passing your OpenAPI definition as a prop.
