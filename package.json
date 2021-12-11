@@ -1,7 +1,7 @@
 {
   "name": "react-openapi-client",
   "description": "Consume OpenAPI-enabled APIs with React Hooks",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "author": "Viljami Kuosmanen <viljami@viljami.io>",
   "license": "MIT",
   "keywords": [
@@ -37,27 +37,27 @@
     "!*.config.js"
   ],
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "dependencies": {
     "openapi-client-axios": "^4.4.9"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.5.0",
-    "@testing-library/react": "^10.0.2",
-    "@testing-library/react-hooks": "^3.2.1",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.8",
     "@types/react": "^16.9.30",
     "@types/react-dom": "^16.9.5",
     "axios": "^0.24.0",
     "isomorphic-fetch": "^2.2.1",
-    "jest": "^25.2.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-test-renderer": "^16.13.1",
-    "ts-jest": "^25.3.0",
+    "jest": "^27.4.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-test-renderer": "^17.0.2",
+    "ts-jest": "^27.1.1",
     "typescript": "^4.5.3"
   },
   "scripts": {
