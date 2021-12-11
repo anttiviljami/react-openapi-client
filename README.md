@@ -1,7 +1,6 @@
 # React OpenAPI Client
 
 [![CI](https://github.com/anttiviljami/react-openapi-client/workflows/CI/badge.svg)](https://github.com/anttiviljami/react-openapi-client/actions?query=workflow%3ACI)
-[![Dependencies](https://david-dm.org/anttiviljami/react-openapi-client.svg)](https://david-dm.org/anttiviljami/react-openapi-client)
 [![npm version](https://img.shields.io/npm/v/react-openapi-client.svg)](https://www.npmjs.com/package/react-openapi-client)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/react-openapi-client?label=gzip%20bundle)](https://bundlephobia.com/package/react-openapi-client)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/anttiviljami/react-openapi-client/blob/master/LICENSE)
