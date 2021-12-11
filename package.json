@@ -38,7 +38,8 @@
   ],
   "peerDependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "axios": "^0.24.0"
   },
   "dependencies": {
     "openapi-client-axios": "^4.4.9"
@@ -54,6 +55,7 @@
     "axios": "^0.24.0",
     "isomorphic-fetch": "^2.2.1",
     "jest": "^27.4.4",
+    "js-yaml": "^4.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-test-renderer": "^17.0.2",
