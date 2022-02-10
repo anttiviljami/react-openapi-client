@@ -28,7 +28,7 @@ export function useOperation(
       }
       setLoading(false);
     })();
-  }, []);
+  }, [api]);
 
   return { loading, error, data, response, api };
 }

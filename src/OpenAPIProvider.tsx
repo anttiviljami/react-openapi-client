@@ -12,7 +12,7 @@ interface Props extends OpenAPIClientAxiosOpts {
 }
 
 export const OpenAPIProvider = ({ children, ...clientOpts }: Props) => {
-  const api = useMemo(() => new OpenAPIClientAxios({ ...clientOpts }), []);
+  const api = useMemo(() => new OpenAPIClientAxios({ ...clientOpts }), [clientOpts]);
   try {
     api.initSync();
   } catch (err) {}
