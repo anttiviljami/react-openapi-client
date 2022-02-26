@@ -30,7 +30,7 @@ export function useOperationMethod(
       setLoading(false);
       return res;
     },
-    [setLoading, setData, setError],
+    [setLoading, setData, setError, api],
   );
 
   return [operationMethod, { loading, error, data, response, api }];
