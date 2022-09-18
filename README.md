@@ -74,13 +74,15 @@ import { render } from 'react-dom';
 import { OpenAPIProvider } from 'react-openapi-client';
 
 const App = () => (
-  <OpenAPIProvider definition="http://petstore.swagger.io:8080/api/v3/openapi.json">
+  <OpenAPIProvider retry={5000} definition="http://petstore.swagger.io:8080/api/v3/openapi.json">
     <PetDetails id={1} />
   </OpenAPIProvider>
 );
 ```
 
 Now you can start using the `useOperation` and `useOperationMethod` hooks in your components.
+
+If you specify the attribute `retry` in `ms`, then in the connection is retried with this timeout, until a connection can be established. This is useful, if the server is down or the client is offline.
 
 ```jsx
 import { useOperation } from 'react-openapi-client';
