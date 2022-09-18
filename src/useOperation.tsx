@@ -8,7 +8,7 @@ export function useOperation(
   operationId: string,
   ...params: OperationParameters
 ): { loading: boolean; error?: Error; data?: any; response: AxiosResponse; api: OpenAPIClientAxios } {
-  const { api } = useContext(OpenAPIContext);
+  const { api, ready } = useContext(OpenAPIContext);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<AxiosError>(undefined);
@@ -17,16 +17,18 @@ export function useOperation(
 
   useEffect(() => {
     (async () => {
-      const client = await api.getClient();
-      let res: AxiosResponse;
-      try {
-        res = await client[operationId](...params);
-        setResponse(res);
-        setData(res.data);
-      } catch (err) {
-        setError(err as AxiosError);
+      if (ready) {
+        const client = await api.getClient();
+        let res: AxiosResponse;
+        try {
+          res = await client[operationId](...params);
+          setResponse(res);
+          setData(res.data);
+        } catch (err) {
+          setError(err as AxiosError);
+        }
+        setLoading(false);
       }
-      setLoading(false);
     })();
   }, [api]);
 
